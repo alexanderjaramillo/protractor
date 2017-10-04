@@ -21,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/alexanderjaramillo/protractor-workshop-2017/issues"
   },
-  "homepage": "https://github.com/alexanderjaramillo/protractor-workshop-2017#readme"
+  "homepage": "https://github.com/alexanderjaramillo/protractor-workshop-2017#readme",
+  "devDependencies": {
+    "@types/jasminewd2": "^2.0.3",
+    "typescript": "^2.5.3"
+  },
+  "clean": "rm -rf dist",
+  "prebuild": "npm run clean",
+  "build": "tsc",
+  "test": "npm run build && protractor dist/protractor/config.ts",
+  "dependencies": {
+    "protractor": "^5.1.2"
+  }
 }
