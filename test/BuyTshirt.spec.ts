@@ -29,11 +29,8 @@ describe('Buy a t-shirt' , () => {
     await browser.get('http://automationpractice.com/');
     await menuContentPage.goToTShirtMenu();
     await productListPage.goToTShirtDetail();
-    
     await productDetailPage.goToAddToCart();
-    
     await productAddedModalPage.goToProceedCheckout();
-    
     await summaryStepPage.goToProceedCheckout();
     await signInStepPage.goToSignIn();
     await addressStepPage.goToProceedCheckout();
