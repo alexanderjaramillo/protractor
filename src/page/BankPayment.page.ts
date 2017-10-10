@@ -2,7 +2,7 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class OrderConfirmationPage {
   private get confirmationText(): ElementFinder {
-    return $('#center_column > div > p > strong');
+    return $('.cheque-indent');
   }
   
   public getOrderText(): promise.Promise<string> {
