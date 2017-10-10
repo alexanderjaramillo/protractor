@@ -8,7 +8,8 @@ export const config: Config = {
   noGlobals: true,
   getPageTimeout: 30000,
   onPrepare: () => {
-    browser.ignoreSynchronization = true ;
+    browser.ignoreSynchronization = true;
+    browser.manage().timeouts().implicitlyWait(3000);
     reporter();
   },
   jasmineNodeOpts: {
