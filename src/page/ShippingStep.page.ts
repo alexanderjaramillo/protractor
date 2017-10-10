@@ -8,7 +8,7 @@ export class ShippingStepPage {
     return $('#form > p > button > span');
   }
   public async goToCheckout(): Promise<void> {
-    this.termsCheck.click();
+    await this.termsCheck.click();
     await this.proceedToCheckoutButton.click();
   }
 }

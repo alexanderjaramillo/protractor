@@ -12,7 +12,7 @@ export class SignInStepPage {
   }
   public async goToSignIn(): Promise<void> {
     await this.emailField.sendKeys('aperdomobo@gmail.com');
-    await this.emailField.sendKeys('WorkshopProtractor');
+    await this.passField.sendKeys('WorkshopProtractor');
     await this.signInButton.click();
   }
 }
