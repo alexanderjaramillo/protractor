@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class SignInStepPage {
   private get emailField(): ElementFinder {
@@ -10,9 +10,9 @@ export class SignInStepPage {
   private get signInButton(): ElementFinder {
     return $('#SubmitLogin > span');
   }
-  public goToSignIn(): promise.Promise<void> {
-    this.emailField.sendKeys('aperdomobo@gmail.com');
-    this.emailField.sendKeys('WorkshopProtractor');
-    return this.signInButton.click();
+  public async goToSignIn(): Promise<void> {
+    await this.emailField.sendKeys('aperdomobo@gmail.com');
+    await this.emailField.sendKeys('WorkshopProtractor');
+    await this.signInButton.click();
   }
 }
