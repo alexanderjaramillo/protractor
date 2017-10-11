@@ -26,15 +26,13 @@ describe('Buy a t-shirt' , () => {
   const orderConfirmationPage: OrderConfirmationPage = new OrderConfirmationPage();
   
   describe('Open Browser', () => {
-
-    it('should open the Chrome Browser', async () => {
+    beforeAll(async () => {
       await browser.get('http://automationpractice.com/');  
     });
   });
 
   describe('Process of buying the tShirt', () => {
-    
-    it('should select the tshirt and add it to the car', async () => {
+    beforeAll(async () => {
       await menuContentPage.goToTShirtMenu();
       await productListPage.goToTShirtDetail();
       await productDetailPage.goToAddToCart();
@@ -44,23 +42,20 @@ describe('Buy a t-shirt' , () => {
   });
 
   describe('Login in the application', () => {
-
-    it('should put the credentials on login fields and logIn', async () => {
+    beforeAll(async () => {
       await signInStepPage.goToSignIn();  
     });
   });
 
   describe('Select Address by default', () => {
-    
-    it('should select the address by default', async () => {
+    beforeAll(async () => {
       await addressStepPage.goToProceedCheckout();
       await shippingStepPage.goToCheckout();    
     });
   });
 
   describe('Verification of the buy', () => {
-    
-    beforeEach(async () => {
+    beforeAll(async () => {
       await paymentStepPage.goToPayment();
       await orderSummaryPage.goToConfirmOrder();
     });

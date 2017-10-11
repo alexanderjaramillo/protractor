@@ -1,11 +1,11 @@
-import { $, ElementFinder } from 'protractor';
+import { $, ElementFinder, promise } from 'protractor';
 
 export class PaymentStepPage {
   private get payButton(): ElementFinder {
     return $('.bankwire');
   }
   
-  public async goToPayment(): Promise<void> {
-    await this.payButton.click();
+  public goToPayment(): promise.Promise<void> {
+    return this.payButton.click();
   }
 }
