@@ -2,7 +2,7 @@ import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
 
 export class ProductAddedModalPage {
   private get proceedToCheckoutButton(): ElementFinder {
-    return $('[style*="display: block;"] .button-container > a');
+    return $('.button-medium');
   }
   
   public async goToProceedCheckout(): Promise<void> {
