@@ -25,19 +25,49 @@ describe('Buy a t-shirt' , () => {
   const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
   const orderConfirmationPage: OrderConfirmationPage = new OrderConfirmationPage();
   
-  it('then should be bought a t-shirt' , async () => {
-    await browser.get('http://automationpractice.com/');
-    await menuContentPage.goToTShirtMenu();
-    await productListPage.goToTShirtDetail();
-    await productDetailPage.goToAddToCart();
-    await productAddedModalPage.goToProceedCheckout();
-    await summaryStepPage.goToProceedCheckout();
-    await signInStepPage.goToSignIn();
-    await addressStepPage.goToProceedCheckout();
-    await shippingStepPage.goToCheckout();
-    await paymentStepPage.goToPayment();
-    await orderSummaryPage.goToConfirmOrder();
-    await expect(orderConfirmationPage.getOrderText())
-      .toBe('Your order on My Store is complete.');
+  describe('Open Browser', () => {
+
+    it('should open the Chrome Browser', async () => {
+      await browser.get('http://automationpractice.com/');  
+    });
+  });
+
+  describe('Process of buying the tShirt', () => {
+    
+    it('should select the tshirt and add it to the car', async () => {
+      await menuContentPage.goToTShirtMenu();
+      await productListPage.goToTShirtDetail();
+      await productDetailPage.goToAddToCart();
+      await productAddedModalPage.goToProceedCheckout();
+      await summaryStepPage.goToProceedCheckout();
+    });
+  });
+
+  describe('Login in the application', () => {
+
+    it('should put the credentials on login fields and logIn', async () => {
+      await signInStepPage.goToSignIn();  
+    });
+  });
+
+  describe('Select Address by default', () => {
+    
+    it('should select the address by default', async () => {
+      await addressStepPage.goToProceedCheckout();
+      await shippingStepPage.goToCheckout();    
+    });
+  });
+
+  describe('Verification of the buy', () => {
+    
+    beforeEach(async () => {
+      await paymentStepPage.goToPayment();
+      await orderSummaryPage.goToConfirmOrder();
+    });
+
+    it('should show the order message', async () => {
+      await expect(orderConfirmationPage.getOrderText())
+      .toBe('Your order on My Store is complete.');  
+    });
   });
 });
