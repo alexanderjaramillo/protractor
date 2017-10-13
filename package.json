@@ -4,14 +4,14 @@
   "description": "This is a Workshop about Protractor",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist, reports",
     "prebuild": "npm run clean",
     "build": "tsc",
     "test": "npm run test:headless",
     "test:local": "npm run build && protractor dist/protractor/config.js",
     "test:headless": "npm run build && protractor dist/protractor/headless.conf.js",
     "postinstall": "webdriver-manager update --gecko false",
-    "lint" : "tslint --type-check --project tsconfig.json protractor/**/*.ts test/**/*.ts src/**/*.ts"
+    "lint": "tslint --type-check --project tsconfig.json protractor/**/*.ts test/**/*.ts src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   "homepage": "https://github.com/alexanderjaramillo/protractor-workshop-2017#readme",
   "devDependencies": {
     "@types/jasminewd2": "^2.0.3",
+    "jasmine-awesome-report": "0.0.2",
     "jasmine-spec-reporter": "^4.2.1",
     "tslint": "^5.7.0",
     "tslint-config-airbnb": "^5.3.0",
