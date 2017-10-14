@@ -33,7 +33,7 @@ describe('Buy a t-shirt' , () => {
     describe('Process of buying the tShirt', () => {
       beforeAll(async () => {
         await menuContentPage.goToTShirtMenu();
-        await productListPage.goToTShirtDetail();
+        await productListPage.selectProduct('Faded Short Sleeve T-shirts');
         await productDetailPage.goToAddToCart();
         await productAddedModalPage.goToProceedCheckout();
         await summaryStepPage.goToProceedCheckout();
