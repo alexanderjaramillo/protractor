@@ -1,4 +1,4 @@
-import { $, ElementFinder, by } from 'protractor';
+import { $, ElementFinder, by, element } from 'protractor';
 
 interface productInformation {
   firstName : string;
@@ -37,19 +37,19 @@ export class PersonalInformationPage {
   }
 
   private continentOption(continent : string): ElementFinder {
-    return $('#continents').element(by.cssContainingText('option', continent));
+    return element(by.id('#continents')).element(by.cssContainingText('option', continent));
   }
 
   private commandsOption(command : string): ElementFinder {
-    return $('#selenium_commands').element(by.cssContainingText('option', command));
+    return element(by.id('#selenium_commands')).element(by.cssContainingText('option', command));
   }
 
   private get buttonButton(): ElementFinder {
-    return $('#submit');
+    return element(by.id('#submit'));
   }
 
   private get pageTitle(): ElementFinder {
-    return $('.content h1');
+    return element(by.id('content')).element(by.tagName('h1'));
   }
   
   public async getTitle(): Promise<string> {
