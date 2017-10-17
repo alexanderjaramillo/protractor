@@ -37,15 +37,15 @@ export class PersonalInformationPage {
   }
 
   private continentOption(continent : string): ElementFinder {
-    return element(by.id('#continents')).element(by.cssContainingText('option', continent));
+    return element(by.id('continents')).element(by.cssContainingText('option', continent));
   }
 
   private commandsOption(command : string): ElementFinder {
-    return element(by.id('#selenium_commands')).element(by.cssContainingText('option', command));
+    return element(by.id('selenium_commands')).element(by.cssContainingText('option', command));
   }
 
   private get buttonButton(): ElementFinder {
-    return element(by.id('#submit'));
+    return element(by.id('submit'));
   }
 
   private get pageTitle(): ElementFinder {
