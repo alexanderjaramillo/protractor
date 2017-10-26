@@ -15,8 +15,7 @@ fdescribe('Javascript Code Execution' , () => {
       });
         
       it('should get the new height', async () => {
-        expect(await iframe.getIframeHeight())
-          .toBe(600);  
+        expect(await iframe.getIframeHeight()).toBe(600);  
       });
     });
   });
