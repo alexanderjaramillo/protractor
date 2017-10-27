@@ -1,7 +1,7 @@
 import { browser, ElementFinder, element, by } from 'protractor';
 
 export class IFramePage {
-  private get IFrame1(): ElementFinder {
+  private get iFrame1(): ElementFinder {
     return element(by.id('IF1'));
   }
   
@@ -11,6 +11,6 @@ export class IFramePage {
   }
 
   public async getIframeHeight() : Promise<number> {
-    return Number(await this.IFrame1.getAttribute('height'));
+    return Number(await this.iFrame1.getAttribute('height'));
   }
 }
