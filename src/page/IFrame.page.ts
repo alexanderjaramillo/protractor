@@ -13,4 +13,20 @@ export class IFramePage {
   public async getIframeHeight() : Promise<number> {
     return Number(await this.iFrame1.getAttribute('height'));
   }
+
+  private get pageTitle(): ElementFinder {
+    return element(by.id('content')).element(by.tagName('h1'));
+  }
+
+  public async getTitle() : Promise<string> {
+    return await this.pageTitle.getText();
+  }
+
+  public async switchIframe1() : Promise<void> {
+    await browser.switchTo().frame(this.iFrame1.getWebElement());
+  }
+
+  public async switchMain() : Promise<void> {
+    await browser.switchTo().defaultContent();
+  }
 }
