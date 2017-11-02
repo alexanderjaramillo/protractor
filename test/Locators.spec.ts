@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
-describe('Fill Personal Information' , () => {
+fdescribe('Fill Personal Information' , () => {
   const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
   
   describe('Open Browser', () => {
@@ -11,7 +11,7 @@ describe('Fill Personal Information' , () => {
     
     describe('Process of filling fields', () => {
       beforeAll(async () => {
-        await personalInformationPage.fillForm({
+        await personalInformationPage.submit({
           firstName: 'Alejandro',
           lastName: 'Perdomo',
           sex: 'Male',
@@ -24,13 +24,18 @@ describe('Fill Personal Information' , () => {
             'Navigation Commands',
             'Switch Commands',
             'Wait Commands',
-            'WebElement Commands']
+            'WebElement Commands'],
+          file: './resources/js.jpg'
         });
       });
         
       it('should show the title of the page', async () => {
         await expect(personalInformationPage.getTitle())
           .toBe('Practice Automation Form');  
+      });
+
+      it('should the file to be in the path', async () => {
+        await expect(personalInformationPage.getFileName()).toBe('js.jpg');
       });
     });
   });
