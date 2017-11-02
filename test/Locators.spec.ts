@@ -11,7 +11,7 @@ fdescribe('Fill Personal Information' , () => {
     
     describe('Process of filling fields', () => {
       beforeAll(async () => {
-        await personalInformationPage.submit({
+        await personalInformationPage.fillForm({
           firstName: 'Alejandro',
           lastName: 'Perdomo',
           sex: 'Male',
