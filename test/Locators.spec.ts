@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
-fdescribe('Fill Personal Information' , () => {
+describe('Fill Personal Information' , () => {
   const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
   
   describe('Open Browser', () => {
