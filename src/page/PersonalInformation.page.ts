@@ -1,4 +1,7 @@
-import { $, ElementFinder, by, element } from 'protractor';
+import { $, ElementFinder, by, element, browser } from 'protractor';
+import { resolve } from 'path';
+import { existsSync } from 'fs';
+import * as remote from 'selenium-webdriver/remote';
 
 interface productInformation {
   firstName : string;
@@ -9,6 +12,7 @@ interface productInformation {
   tools : string[];
   continent : string;
   commands : string[];
+  file : string;
 }
 
 export class PersonalInformationPage {
@@ -44,6 +48,10 @@ export class PersonalInformationPage {
     return element(by.id('selenium_commands')).element(by.cssContainingText('option', command));
   }
 
+  private get inputFile(): ElementFinder {
+    return element(by.id('photo'));
+  }
+
   private get buttonButton(): ElementFinder {
     return element(by.id('submit'));
   }
@@ -56,6 +64,21 @@ export class PersonalInformationPage {
     return await this.pageTitle.getText();
   }
 
+  public async getFileName(): Promise<string> {
+    const fullPath: string = await this.inputFile.getAttribute('value');
+    return fullPath.split(/(\\|\/)/g).pop();
+  }
+
+  private async uploadFile(path: string): Promise<void> {
+    const fullPath = resolve(process.cwd(), path);
+
+    if (existsSync(fullPath)) {
+      await browser.setFileDetector(new remote.FileDetector());
+      await this.inputFile.sendKeys(fullPath);
+      await browser.setFileDetector(undefined);
+    }
+  }
+
   public async fillForm(data : productInformation): Promise<void> {
     await this.firstName.sendKeys(data.firstName);
     await this.lastName.sendKeys(data.lastName);
@@ -64,6 +87,10 @@ export class PersonalInformationPage {
 
     for (const profession of data.profession) {
       await this.professionCheck(profession).click();
+    }
+
+    if (data.file) {
+      await this.uploadFile(data.file);
     }
 
     for (const tool of data.tools) {
@@ -75,7 +102,10 @@ export class PersonalInformationPage {
     for (const command of data.commands) {
       await this.commandsOption(command).click();
     }
+  }
 
+  public async submit(data : productInformation): Promise<void> {
+    await this.fillForm(data);
     await this.buttonButton.click();
   }
 }

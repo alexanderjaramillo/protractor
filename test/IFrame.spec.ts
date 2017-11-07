@@ -1,7 +1,7 @@
 import { browser } from 'protractor';
 import { IFramePage } from '../src/page';
 
-fdescribe('Given a page with Iframes' , () => {
+describe('Given a page with Iframes' , () => {
   const iframe: IFramePage = new IFramePage();
   
   describe('open browser', () => {
