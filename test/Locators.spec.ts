@@ -1,7 +1,8 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
+import { DownloadService } from '../src/service';
 
-describe('Fill Personal Information' , () => {
+fdescribe('Fill Personal Information' , () => {
   const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
   
   describe('Open Browser', () => {
@@ -25,7 +26,8 @@ describe('Fill Personal Information' , () => {
             'Switch Commands',
             'Wait Commands',
             'WebElement Commands'],
-          file: './resources/js.jpg'
+          file: './resources/js.jpg',
+          downloadFile: true
         });
       });
         
@@ -34,8 +36,14 @@ describe('Fill Personal Information' , () => {
           .toBe('Practice Automation Form');  
       });
 
-      it('should the file to be in the path', async () => {
+      it('and should the file to be in the path', async () => {
         await expect(personalInformationPage.getFileName()).toBe('js.jpg');
+      });
+
+      it('and should be created a file', async () => {
+        const service = new DownloadService();
+        const file = await service.readFileFromTemp('test-document.xlsx');
+        expect(file.byteLength).toBeGreaterThanOrEqual(8000);
       });
     });
   });

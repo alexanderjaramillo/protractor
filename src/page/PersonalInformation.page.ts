@@ -1,6 +1,7 @@
 import { $, ElementFinder, by, element, browser } from 'protractor';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
+import { DownloadService } from '../service'; 
 import * as remote from 'selenium-webdriver/remote';
 
 interface productInformation {
@@ -13,6 +14,7 @@ interface productInformation {
   continent : string;
   commands : string[];
   file : string;
+  downloadFile : boolean;
 }
 
 export class PersonalInformationPage {
@@ -59,6 +61,10 @@ export class PersonalInformationPage {
   private get pageTitle(): ElementFinder {
     return element(by.id('content')).element(by.tagName('h1'));
   }
+
+  private get downloadLink(): ElementFinder {
+    return element(by.linkText('Test File to Download'));
+  }
   
   public async getTitle(): Promise<string> {
     return await this.pageTitle.getText();
@@ -79,6 +85,12 @@ export class PersonalInformationPage {
     }
   }
 
+  private async download(): Promise<void> {
+    const link = await this.downloadLink.getAttribute('href');
+    const service = new DownloadService();
+    await service.downloadFile(link, 'test-document.xlsx');
+  }
+
   public async fillForm(data : productInformation): Promise<void> {
     await this.firstName.sendKeys(data.firstName);
     await this.lastName.sendKeys(data.lastName);
@@ -91,6 +103,10 @@ export class PersonalInformationPage {
 
     if (data.file) {
       await this.uploadFile(data.file);
+    }
+
+    if (data.downloadFile) {
+      await this.download();
     }
 
     for (const tool of data.tools) {
